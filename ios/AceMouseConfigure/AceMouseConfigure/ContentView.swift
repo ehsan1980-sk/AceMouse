@@ -34,13 +34,19 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         }
     }
 
-
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        // Connection successful
         print("Connected to \(peripheral.name ?? "")")
+        DispatchQueue.main.async {
+            self.isConnected = true
+        }
+        peripheral.discoverServices(nil)
+    }
 
-        // Discover services here. You can pass nil to discover all services or pass an array of CBUUIDs if you're looking for specific services
-        peripheral.discoverServices(nil)  // or peripheral.discoverServices([CBUUID(string: "YOUR_UART_SERVICE_UUID")])
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("Disconnected from \(peripheral.name ?? "")")
+        DispatchQueue.main.async {
+            self.isConnected = false
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
