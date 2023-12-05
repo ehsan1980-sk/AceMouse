@@ -10,6 +10,11 @@
 - DONT WORRY ABOUT CLICKS - we can use in built dwell options in the OS or we will use seperate switches for this in our designated software. Down the line we may need to figure this out.. (i.e. wire in a switch jack to pins on the xiao or we may migrate to a https://www.adafruit.com/product/4503 and connect via JST to a X80 https://github.com/acecentre/x80) 
 - Allow for proportional control as an option. I.e the longer you hold in a direction the faster it goes
 
+## Use cases
+
+- a wrist wotn system
+- a head mounted system
+-  inside a wheelchair joystick shaft housing.  In this use case we somehow need to undrestabbd any baseline tilt and subtract that from the imu data. I think we could do that with firmware (look at movement over time) but maybe easier with a second imu on the base of the chsir. ie using our x80 board
 
 ## Notes
 
